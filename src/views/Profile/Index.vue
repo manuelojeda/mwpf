@@ -1,15 +1,23 @@
 <template>
   <div class="my-5">
-    <div v-if="isLoading">
-      Loading
+    <div v-if="isLoading" class="row">
+      <b-col>
+        Loading
+      </b-col>
     </div>
     <template v-else>
-      <h2 class="font-text mb-3">
-        {{ player.username }} Profile's
-      </h2>
-      <router-link to="/">
-        Return
-      </router-link>
+      <b-row>
+        <b-col cols="12" class="mb-4">
+          <h2 class="font-text mb-3">
+            {{ player.username }} Profile's
+          </h2>
+          <router-link to="/">
+            Return
+          </router-link>
+        </b-col>
+
+        <profile-details :player="player" />
+      </b-row>
     </template>
   </div>
 </template>
@@ -18,9 +26,13 @@
 import { defineComponent, ref } from '@vue/composition-api'
 import { searchPlayerData } from '@/api/search'
 import { useMainStore } from '@/store/'
+import ProfileDetails from './ProfileDetails/Index.vue'
 
 export default defineComponent({
   name: 'Profile',
+  components: {
+    ProfileDetails
+  },
   setup (props, { root }) {
     const main = useMainStore()
     const player = ref<any>(null)
