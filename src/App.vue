@@ -1,29 +1,42 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div id="app" class="container my-5">
+    <default-layout />
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
+import { defineComponent } from '@vue/composition-api'
+import DefaultLayout from '@/layouts/Default.vue'
 
-export default Vue.extend({
+export default defineComponent({
   name: 'App',
   components: {
-    HelloWorld
+    DefaultLayout
   }
+  // setup () {
+  //   const main = useMainStore()
+
+  //   const fetchPlayerData = () => {
+  //     searchPlayerData(
+  //       'battle',
+  //       'darkjeda%231915'
+  //     )
+  //       .then(({ data }) => {
+  //         // console.log(data)
+  //         main.setPlayerData(data.data)
+  //       })
+  //       .catch((err) => {
+  //         main.setError(err)
+  //       })
+  //   }
+
+  //   fetchPlayerData()
+  // }
+  // async created () {
+  //   const response = await searchPlayerData(
+  //     'battle',
+  //     'darkjeda%231915'
+  //   )
+  // }
 })
 </script>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

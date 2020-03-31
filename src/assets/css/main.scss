@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap');
+
+html, body {
+  background-color: #000;
+  color: #fff;
+}
+
+@font-face {
+  font-family: "ModernWarfare";
+  src: url("../fonts/ModernWarfare.ttf");
+}
+
+.font-warfare {
+  font-family: "ModernWarfare", sans-serif;
+}
+
+.font-text {
+  font-family: 'Montserrat', sans-serif;
+}

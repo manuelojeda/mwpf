@@ -1,15 +1,17 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import { createStore } from 'pinia'
 
-Vue.use(Vuex)
-
-export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
+export const useMainStore = createStore({
+  id: 'main',
+  state: () => ({
+    player: null,
+    error: null
+  }),
   actions: {
-  },
-  modules: {
+    setPlayerData (payload) {
+      this.state.player = payload
+    },
+    setError (payload) {
+      this.state.error = payload
+    }
   }
 })
