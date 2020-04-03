@@ -6,7 +6,7 @@
     <img
       :src="playerRankUrl"
       :alt="rank"
-      class="mx-auto d-block"
+      class="mx-auto d-block img-fluid"
     >
     <p class="font-text">
       {{ rank }} <br/>

@@ -17,21 +17,45 @@
         </b-col>
 
         <profile-details :player="player" />
+
+        <b-col cols="12 mt-3">
+          <hr class="bg-white" />
+          <h3 class="font-warfare">
+            Weapons Details
+          </h3>
+        </b-col>
+
+        <div class="col-12">
+          <div
+            v-for="(tier, index) in weapons"
+            :key="index"
+            class="row"
+          >
+            <top-weapons
+              v-if="isValid(index)"
+              :key="index"
+              :tier="index"
+              :weapons="tier"
+            />
+          </div>
+        </div>
       </b-row>
     </template>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@vue/composition-api'
+import { defineComponent, ref, computed } from '@vue/composition-api'
 import { searchPlayerData } from '@/api/search'
 import { useMainStore } from '@/store/'
 import ProfileDetails from './ProfileDetails/Index.vue'
+import TopWeapons from './TopWeapons/Index.vue'
 
 export default defineComponent({
   name: 'Profile',
   components: {
-    ProfileDetails
+    ProfileDetails,
+    TopWeapons
   },
   setup (props, { root }) {
     const main = useMainStore()
@@ -71,11 +95,31 @@ export default defineComponent({
         })
     }
 
+    const weapons = computed(() => {
+      return {
+        ...player.value.lifetime.itemData
+      }
+    })
+
+    function isValid (index): boolean {
+      if (
+        index === 'tacticals' ||
+        index === 'lethals' ||
+        index === 'weapon_other'
+      ) {
+        return false
+      }
+
+      return true
+    }
+
     fetchPlayerData()
 
     return {
       player,
-      isLoading
+      weapons,
+      isLoading,
+      isValid
     }
   }
 })

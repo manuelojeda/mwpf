@@ -2,15 +2,18 @@
   <div class="mx-auto d-block text-center">
     <h5 class="font-warfare">
       {{title}} <br />
-      <small class="font-text">
-        {{ formattedRatio }}%
-      </small>
     </h5>
     <apexchart
-      type="pie"
-      :series="options.series"
+      type="radialBar"
+      :series="percents"
       :options="options"
     ></apexchart>
+    <p class="font-text mb-0" v-if="isMatches">
+      <strong>
+        Total matches:
+      </strong>
+      {{ numeral(total).format('0,0') }}
+    </p>
 
   </div>
 </template>
@@ -29,6 +32,14 @@ export default defineComponent({
     options: {
       type: Object,
       required: true
+    },
+    isMatches: {
+      type: Boolean,
+      default: () => false
+    },
+    isAccuracy: {
+      type: Boolean,
+      default: () => false
     }
   },
   setup (props) {
@@ -36,8 +47,25 @@ export default defineComponent({
       return numeral(props.options.ratio).format('0.00')
     })
 
+    const total = props.options.series[0] + props.options.series[1]
+    const percents = computed(() => {
+      if (!props.isAccuracy) {
+        const positivePercent = (props.options.series[0] * 100) / total
+        return [
+          numeral(positivePercent).format('0.00')
+        ]
+      }
+
+      return [
+        numeral(props.options.series[0] * 100).format('0.00')
+      ]
+    })
+
     return {
-      formattedRatio
+      formattedRatio,
+      percents,
+      total,
+      numeral
     }
   }
 })
