@@ -20,6 +20,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "profile" */ '../views/Profile/Index.vue')
   },
   {
+    path: '/profile/:username/:platform/:weaponTier/:weapon',
+    name: 'WeaponDetail',
+    component: () => import(/* webpackChunkName: "profile" */ '../views/WeaponDetail/Index.vue')
+  },
+  {
     path: '/error',
     name: 'Error',
     component: () => import(/* webpackChunkName: "error" */ '../views/Error/Index.vue')

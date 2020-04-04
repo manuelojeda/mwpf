@@ -9,9 +9,10 @@
       <b-row>
         <b-col cols="12" class="mb-4">
           <h2 class="font-text mb-3">
+            <PlatformIcon :platform="platform" />
             {{ player.username }} Profile's
           </h2>
-          <router-link to="/">
+          <router-link class="btn btn-sm btn-primary" to="/">
             Return
           </router-link>
         </b-col>
@@ -50,32 +51,24 @@ import { searchPlayerData } from '@/api/search'
 import { useMainStore } from '@/store/'
 import ProfileDetails from './ProfileDetails/Index.vue'
 import TopWeapons from './TopWeapons/Index.vue'
+import PlatformIcon from '@/components/PlatformIcon.vue'
 
 export default defineComponent({
   name: 'Profile',
   components: {
     ProfileDetails,
-    TopWeapons
+    TopWeapons,
+    PlatformIcon
   },
   setup (props, { root }) {
     const main = useMainStore()
     const player = ref<any>(null)
     const isError = ref<boolean>(false)
     const isLoading = ref<boolean>(false)
+    const { username, platform } = root.$route.params
 
     function fetchPlayerData () {
-      let username
-      const { platform } = root.$route.params
-
-      if (platform === 'PC') {
-        const temporalUsername = root.$route.params.username
-        username = temporalUsername.replace('#', '%23')
-      } else {
-        username = root.$route.params.username
-      }
-
       isLoading.value = true
-
       searchPlayerData(platform, username)
         .then(({ data }) => {
           player.value = data.data
@@ -119,7 +112,8 @@ export default defineComponent({
       player,
       weapons,
       isLoading,
-      isValid
+      isValid,
+      platform
     }
   }
 })

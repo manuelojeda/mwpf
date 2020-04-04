@@ -16,6 +16,7 @@
     "axios": "^0.19.2",
     "bootstrap-vue": "^2.9.0",
     "core-js": "^3.6.4",
+    "mdbootstrap": "^4.15.0",
     "numeral": "^2.0.6",
     "pinia": "0.0.5",
     "vue": "^2.6.11",

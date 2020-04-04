@@ -10,13 +10,14 @@
       class="weapons-grid mb-5"
     >
       <div
-        v-for="(weapon, index) in weapons"
+        v-for="(weapon, index) in orderedWeapons"
         :key="index"
         class="weapon"
       >
         <WeaponDetail
-          :weapon="weapon.properties"
-          :weapon-key="index"
+          :weapon="weapon[1].properties"
+          :weapon-key="weapon[0]"
+          :weapon-tier="tier"
           :key="index"
         />
       </div>
@@ -25,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent, computed } from '@vue/composition-api'
 import WeaponDetail from './WeaponDetail.vue'
 
 export default defineComponent({
@@ -57,8 +58,15 @@ export default defineComponent({
       weapon_melee: 'Melee'
     }
 
+    const orderedWeapons = computed(() => {
+      return Object.entries(props.weapons).sort(function (a, b) {
+        return b[1].properties.kills - a[1].properties.kills
+      })
+    })
+
     return {
-      tiers
+      tiers,
+      orderedWeapons
     }
   }
 })

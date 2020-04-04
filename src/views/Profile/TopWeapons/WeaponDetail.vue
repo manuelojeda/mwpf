@@ -8,13 +8,17 @@
         <b>Kills:</b> {{ formattedKils }}
       </p>
       <p class="font-text mb-0">
+        <b>Headshots:</b> {{ formattedHeadshots }}
+      </p>
+      <p class="font-text mb-0">
         <b>Accuracy:</b> {{ formattedAccuracy }}%
       </p>
     </div>
     <b-btn
-      class="w-100 d-block rounded-0"
+      class="w-100 d-block rounded-0 m-0"
       variant="primary"
       size="sm"
+      :to="detailUrl"
     >
       Details
     </b-btn>
@@ -31,20 +35,33 @@ export default defineComponent({
     weapon: {
       type: Object
     },
+    weaponTier: {
+      type: String
+    },
     weaponKey: {
       type: String
     }
   },
-  setup (props) {
+  setup (props, { root }) {
     const formattedKils = computed((): string => {
       return numeral(props.weapon.kills).format('0,0')
+    })
+    const formattedHeadshots = computed((): string => {
+      return numeral(props.weapon.headshots).format('0,0')
     })
     const formattedAccuracy = computed((): string => {
       return numeral(props.weapon.accuracy * 100).format('0.00')
     })
+
+    const detailUrl = computed((): string => {
+      return `/profile/${escape(root.$route.params.username)}/${root.$route.params.platform}/${props.weaponTier}/${props.weaponKey}`
+    })
+
     return {
       formattedKils,
-      formattedAccuracy
+      formattedAccuracy,
+      formattedHeadshots,
+      detailUrl
     }
   }
 })

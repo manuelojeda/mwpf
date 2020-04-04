@@ -6,23 +6,23 @@
           Player Details
         </h3>
       </b-col>
-      <b-col cols="12" md="6" lg="3" class="text-center mb-5 my-auto">
+      <b-col cols="12" sm="6" md="6" lg="3" class="text-center mb-5 my-auto">
         <player-rank :rank="player.level" />
       </b-col>
-      <b-col cols="12" md="6" lg="3" class="text-center mb-5 my-auto">
+      <b-col cols="12" sm="6" md="6" lg="3" class="text-center mb-5 my-auto">
         <PlayerDonutChart
           :options="kdOptions"
           title="KD Ratio"
         />
       </b-col>
-      <b-col cols="12" md="6" lg="3" class="text-center mb-5 my-auto">
+      <b-col cols="12" sm="6" md="6" lg="3" class="text-center mb-5 my-auto">
         <PlayerDonutChart
           :options="wlOptions"
           title="Win Lose Ratio"
           :is-matches="true"
         />
       </b-col>
-      <b-col cols="12" md="6" lg="3" class="text-center mb-5 my-auto">
+      <b-col cols="12" sm="6" md="6" lg="3" class="text-center mb-5 my-auto">
         <PlayerDonutChart
           :options="accuracyOptions"
           title="Accuracy"
