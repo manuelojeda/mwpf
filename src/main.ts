@@ -2,9 +2,12 @@ import Vue from 'vue'
 import CompApi from '@vue/composition-api'
 import BootstrapVue from 'bootstrap-vue'
 import VueApexCharts from 'vue-apexcharts'
+import Snipper from '@/components/Spinner.vue'
 
 import App from './App.vue'
 import router from './router'
+
+import './plugins/FontAwesome'
 
 // CSS global
 import 'bootstrap/dist/css/bootstrap.css'
@@ -18,6 +21,7 @@ Vue.use(BootstrapVue)
 Vue.config.productionTip = false
 
 Vue.component('apexchart', VueApexCharts)
+Vue.component('spinner', Snipper)
 
 new Vue({
   router,

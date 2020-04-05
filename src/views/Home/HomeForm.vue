@@ -26,8 +26,8 @@
         </div>
       </div>
       <b-form-group>
-        <div class="float-right">
-          <b-btn type="submit" variant="primary" size="sm">
+        <div class="btn-submit">
+          <b-btn class="submit-btn" type="submit" variant="primary" size="sm">
             Submit
           </b-btn>
         </div>
@@ -97,5 +97,18 @@ export default defineComponent({
 
 img {
   max-width: 50px;
+}
+.btn-submit {
+  .btn {
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+    @media(min-width: 768px) {
+      margin: 0;
+      width: auto;
+      float: right;
+    }
+  }
 }
 </style>

@@ -8,7 +8,7 @@
       :series="percents"
       :options="options"
     ></apexchart>
-    <p class="font-text mb-0" v-if="isMatches">
+    <p class="font-text mb-4 mb-md-0" v-if="isMatches">
       <strong>
         Total matches:
       </strong>

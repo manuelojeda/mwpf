@@ -14,17 +14,17 @@
           Return
         </b-btn>
       </b-col>
-      <b-col cols="12">
+      <b-col cols="12" class="mb-4">
         <div class="data-grid">
           <div class="weapon-presentation">
             <img :src="`./img/${weapon}.webp`" :alt="weapon" class="img-fluid img-weapon">
           </div>
           <div class="data-presentation">
-            <h2 class="text-center">
+            <h1 class="text-center font-weight-bold">
               {{
                 weaponsCatalog[weapon]
               }}
-            </h2>
+            </h1>
           </div>
         </div>
       </b-col>
@@ -33,67 +33,74 @@
         class="my-5"
       >
         <div class="others-grid">
-          <div>
+          <div class="mb-5">
+            <font-awesome-icon icon="skull" class="mb-3 fa-4x text-center w-100 font-aws" /> <br />
             <h3 class="text-center">
               {{
                 numeral(weaponData.kills).format('0,0')
               }}
             </h3>
-            <h5 class="font-warfare text-center">
+            <p class="font-warfare text-center mb-0">
               Kills
-            </h5>
+            </p>
           </div>
           <div>
+            <font-awesome-icon icon="skull-crossbones" class="mb-3 fa-4x text-center w-100 font-aws" /> <br />
             <h3 class="text-center">
               {{
                 numeral(weaponData.deaths).format('0,0')
               }}
             </h3>
-            <h5 class="font-warfare text-center">
+            <p class="font-warfare text-center mb-0">
               Deaths by
-            </h5>
+            </p>
           </div>
           <div>
+            <font-awesome-icon icon="bullseye" class="mb-3 fa-4x text-center w-100 font-aws" /> <br />
             <h3 class="text-center">
               {{
                 numeral(weaponData.headshots).format('0,0')
               }}
             </h3>
-            <h5 class="font-warfare text-center">
+            <p class="font-warfare text-center mb-0">
               Headshots
-            </h5>
+            </p>
           </div>
           <div>
+            <font-awesome-icon icon="percentage" class="mb-3 fa-4x text-center w-100 font-aws" /> <br />
             <h3 class="text-center">
               {{
                 numeral(weaponData.kdRatio).format('0.00')
               }}
             </h3>
-            <h5 class="font-warfare text-center">
+            <p class="font-warfare text-center">
               K/D Ratio
-            </h5>
+            </p>
           </div>
           <div>
+            <font-awesome-icon icon="circle" class="mb-3 fa-4x text-center w-100 font-aws" /> <br />
             <h3 class="text-center">
               {{
                 numeral(weaponData.shots).format('0,0')
               }}
             </h3>
-            <h5 class="font-warfare text-center">
+            <p class="font-warfare text-center mb-0">
               Shots fired
-            </h5>
+            </p>
           </div>
           <div>
+            <font-awesome-icon icon="compress-arrows-alt" class="mb-3 fa-4x text-center w-100 font-aws" /> <br />
             <h3 class="text-center">
               {{
                 numeral(weaponData.hits).format('0,0')
               }}
             </h3>
-            <h5 class="font-warfare text-center">
+            <p class="font-warfare text-center mb-0">
               Hits
-            </h5>
+            </p>
           </div>
           <div>
+            <font-awesome-icon icon="crosshairs" class="mb-3 fa-4x text-center w-100 font-aws" /> <br />
             <h3 class="text-center">
               {{
                 numeral(
@@ -101,9 +108,9 @@
                 ).format('0.00')
               }}%
             </h3>
-            <h5 class="font-warfare text-center">
+            <p class="font-warfare text-center mb-0">
               Accuracy
-            </h5>
+            </p>
           </div>
         </div>
       </b-col>
@@ -216,5 +223,9 @@ export default defineComponent({
   @media (min-width: 768px) {
     grid-template-columns: repeat(4, 1fr);
   }
+}
+
+.font-aws {
+  color: #00aeef;
 }
 </style>

@@ -1,18 +1,27 @@
 <template>
   <div class="border">
-    <div class="p-3">
-      <div class="imageContainer">
+    <div class="">
+      <div class="image-container p-3">
         <img class="d-block mx-auto img-fluid" :src="`./img/${weaponKey}.webp`" loading="lazy" />
       </div>
-      <p class="font-text mb-0">
-        <b>Kills:</b> {{ formattedKils }}
-      </p>
-      <p class="font-text mb-0">
-        <b>Headshots:</b> {{ formattedHeadshots }}
-      </p>
-      <p class="font-text mb-0">
-        <b>Accuracy:</b> {{ formattedAccuracy }}%
-      </p>
+      <div class="weapon-name">
+        <h5 class="font-text font-weight-bold">
+          {{
+            weaponsCatalog[weaponKey]
+          }}
+        </h5>
+      </div>
+      <div class="weapon-details-data p-4">
+        <p class="font-text mb-0">
+          <font-awesome-icon icon="skull" class="mr-2" />{{ formattedKils }} kills
+        </p>
+        <p class="font-text mb-0">
+          <font-awesome-icon icon="bullseye" class="mr-2" /> {{ formattedHeadshots }} headshots
+        </p>
+        <p class="font-text mb-0">
+          <font-awesome-icon icon="crosshairs" class="mr-2" /> {{ formattedAccuracy }}% accuracy
+        </p>
+      </div>
     </div>
     <b-btn
       class="w-100 d-block rounded-0 m-0"
@@ -27,6 +36,7 @@
 
 <script lang="ts">
 import { defineComponent, computed } from '@vue/composition-api'
+import { weaponsCatalog } from '@/utils/weapons'
 import numeral from 'numeral'
 
 export default defineComponent({
@@ -61,14 +71,36 @@ export default defineComponent({
       formattedKils,
       formattedAccuracy,
       formattedHeadshots,
-      detailUrl
+      detailUrl,
+      weaponsCatalog
     }
   }
 })
 </script>
 
-<style scoped>
-.imageContainer {
+<style lang="scss" scoped>
+.image-container {
   height: 120px;
+
+  img {
+    max-height: 80px;
+  }
+}
+
+.weapon-name {
+  padding: 0.3rem;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.weapon-details-data {
+  background-color: lightslategray;
+}
+
+.btn-primary {
+  transition: all ease .3s !important;
+  &:hover {
+    background-color: darken(#4285f4, 10) !important;
+  }
 }
 </style>

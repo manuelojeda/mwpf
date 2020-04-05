@@ -1,13 +1,15 @@
 <template>
   <div class="my-5">
     <div v-if="isLoading" class="row">
-      <b-col>
-        Loading
+      <b-col
+        cols="12"
+      >
+        <spinner />
       </b-col>
     </div>
     <template v-else>
       <b-row>
-        <b-col cols="12" class="mb-4">
+        <b-col cols="12" class="mb-4" v-if="!isError">
           <h2 class="font-text mb-3">
             <PlatformIcon :platform="platform" />
             {{ player.username }} Profile's
@@ -17,7 +19,7 @@
           </router-link>
         </b-col>
 
-        <profile-details :player="player" />
+        <profile-details v-if="!isError" :player="player" />
 
         <b-col cols="12 mt-3">
           <hr class="bg-white" />
@@ -26,7 +28,7 @@
           </h3>
         </b-col>
 
-        <div class="col-12">
+        <div class="col-12" v-if="!isError">
           <div
             v-for="(tier, index) in weapons"
             :key="index"
@@ -71,9 +73,15 @@ export default defineComponent({
       isLoading.value = true
       searchPlayerData(platform, username)
         .then(({ data }) => {
-          player.value = data.data
-          main.setError(null)
-          main.setPlayerData(data.data)
+          if (data.status === 'error') {
+            main.setError(data.data)
+            main.setPlayerData(null)
+            isError.value = true
+          } else {
+            player.value = data.data
+            main.setError(null)
+            main.setPlayerData(data.data)
+          }
         })
         .catch((err) => {
           main.setError(err.response.data)
@@ -89,6 +97,9 @@ export default defineComponent({
     }
 
     const weapons = computed(() => {
+      if (isError.value) {
+        return null
+      }
       return {
         ...player.value.lifetime.itemData
       }
@@ -113,6 +124,7 @@ export default defineComponent({
       weapons,
       isLoading,
       isValid,
+      isError,
       platform
     }
   }

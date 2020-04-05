@@ -2,13 +2,16 @@
   <div>
     <h3 class="font-warfare">Error</h3>
     <h5 class="font-warfare mb-5">
-      <span v-if="error.status === 404">
-        Player
-      </span>
-      {{ error.error }}
+      {{ error.message }}
     </h5>
 
+    <p>
+      This error is related at maybe the player you are looking for isn't available or wasn't found in the datastore.
+      Try again later or search for another player.
+    </p>
+
     <b-btn
+      variant="primary"
       to="/"
     >
       Return to Home

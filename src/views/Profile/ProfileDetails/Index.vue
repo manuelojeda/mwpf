@@ -2,7 +2,7 @@
   <div class="col-12">
     <b-row class="h-100">
       <b-col cols="12" class="mb-3">
-        <h3 class="font-warfare">
+        <h3 class="font-warfare player-detail-title">
           Player Details
         </h3>
       </b-col>
@@ -128,6 +128,12 @@ export default defineComponent({
 })
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.player-detail-title {
+  text-align: center;
 
+  @media (min-width: 768px) {
+    text-align: left;
+  }
+}
 </style>
